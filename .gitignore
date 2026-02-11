@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual Environment
+venv/
+.env/
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Data files
+data/raw_logs/
+data/compressed_logs/
+data/metrics/
+data/escalation_records/
+
+# Embeddings / Pickle files
+*.pkl
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# API keys
+*.key
+config/jira_config.yaml
+config/settings.yaml
+
+# Streamlit
+.streamlit/
