@@ -1,105 +1,143 @@
-Technical Troubleshooting Guide
-Dual-agent AI system for enterprise IT troubleshooting using ScaleDown, local LLM (Ollama), semantic retrieval, and automated escalation.
+# 🤖   LogSentiel
 
-Problem
-Enterprise logs often exceed 10,000+ lines and contain repetitive stack traces and noise. Engineers manually analyze logs, search forums, and escalate unresolved issues, increasing Mean Time to Resolution (MTTR).
+<div align="center"> <b>LogSentinel</b> <p><strong>Dual-Agent AI System for Enterprise IT Troubleshooting</strong></p> <p> <img src="https://img.shields.io/badge/Python-3.8+-blue" alt="Python Version"/> <img src="https://img.shields.io/badge/LLM-Ollama%20(Mistral)-green" alt="LLM"/> <img src="https://img.shields.io/badge/API-ScaleDown-orange" alt="ScaleDown API"/> <img src="https://img.shields.io/badge/License-MIT-yellow" alt="License"/> <img src="https://img.shields.io/badge/Status-Active-success" alt="Status"/> </p> </div>
 
-Solution
-This system automates enterprise troubleshooting by:
+## 🌟 Overview
+LogSentinel is an enterprise-grade troubleshooting assistant that analyzes large error logs (10,000+ lines), retrieves similar historical issues, generates structured step-by-step solutions, and intelligently escalates low-confidence cases.
 
-Compressing large logs using ScaleDown API
+It combines:
+   -  <li> ScaleDown API for log compression</li>
+   - <li>Local LLM (Ollama + Mistral) for reasoning</li>
+   -  <li>Embedding-based similarity search</li>
+   - <li>Confidence-driven escalation workflow</li>
+   - <li>Optional Jira integration</li>
 
-Extracting dominant errors with a local LLM
+### 🎯 Key Features
 
-Retrieving similar historical issues using embeddings
+- 🧠 Dual-Agent Architecture (Log Analyst + Solution Engineer)
+- 💭Log Compression (~85% reduction via ScaleDown)
+- 🔎 Semantic Similarity Search (StackOverflow, GitHub, Runbooks)
+- 📊 Confidence-Based Decision Engine
+- 🔄 Automated Escalation to Jira
+- 🏠 Local LLM Processing (Sensitive logs stay local)
+- 📈 MTTR Tracking & Observability
 
-Generating step-by-step solutions
+## 🚀 Quick Start
 
-Computing confidence scores
+### Prerequisites
 
-Escalating low-confidence cases to Jira
+- Python 3.8+
+- Ollama installed
+- Mistral model pulled
+- ScaleDown API Key
+- Optional: Jira API credentials
 
-Architecture Workflow
-Large Log
-   ↓
-ScaleDown API (Compression)
-   ↓
-Agent 1 – Log Analysis
-   ↓
-Similarity Search (Knowledge Base)
-   ↓
-Agent 2 – Solution + Confidence
-   ↓
-Decision Engine
-   ├── Auto Resolve
-   ├── Suggest Review
-   └── Escalate → Jira Ticket
-Features
-Dual-agent reasoning architecture
+### Installation
 
-Local LLM processing (Ollama + Mistral)
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ishani2025/CHALLENGE-2.git
+   ```
 
-Embedding-based similarity search
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Confidence-driven escalation workflow
+3. **Install & Start Ollama**
+   ```bash 
+   ollama pull mistral
+   ollama run  mistral
+   ```
 
-Optional Slack & Jira integration
+4. **Configure Environment Variables**
+   ```bash
+   Create a .env file and in that have:
+   SCALEDOWN_API_KEY=your_key
+   SCALEDOWN_BASE_URL=your_url
+   JIRA_API_KEY=your_jira_key
+   ```
 
-MTTR tracking and compression metrics
 
-How to Run
-1. Install dependencies
-pip install -r requirements.txt
-2. Install and run Ollama
-ollama pull mistral
-ollama run mistral
-3. Set environment variables
-SCALEDOWN_API_KEY=your_key
-SCALEDOWN_BASE_URL=your_url
-JIRA_API_KEY=your_key
-4. Start application
+
+## 🏗️ Architecture
+
+```
+LogSentiel
+├── src/
+│   ├── agents/
+│   │   ├── agent1.py
+│   │   ├── agent2.py
+│   │------llm/
+│   ├── embeddings/
+│   │   ├── __init__t.py     
+│   │   ├── embedder.py       
+│   │   └── vector_store.py    
+│   ├── utils/
+│   │   ├── file_utils.py        
+│   │   └── logger.py       
+│   └── decision/
+│       └── decision_controller.py    
+├── data/
+│   ├──compressed_logs/              
+│   └── raw_logs/            
+├── tests/
+├──assessts/
+└── config/
+├── requirements.txt
+└── app.py
+```
+
+## 🤖 Dual-Agent Logic
+
+### Agent 1 – Log Analyst
+- Calls ScaleDown API
+- Reduces noise
+- Extracts primary error signals
+- Categorizes failure type
+### Agent 2 – Solution Engineer
+- Retrieves similar historical cases
+- Generates grounded resolution steps
+- Computes confidence score
+
+## 💬 Confidence Thresholds
+```bash 
+   Score     | Action         
+   | ------- | -------------- |
+   | ≥ 0.85  | Auto Resolve   |
+   | 0.65–0.85 | Suggest Review |
+   | < 0.65  | Escalate       |
+```
+## 📊 Metrics & Observability
+
+The system tracks:
+- Compression Ratio
+- Resolution Success Rate
+- Escalation Frequency
+- Estimated MTTR Reduction
+## 🔧 Running the Application
+CLI Mode:
+```bash
 python app.py
-or
-
+```
+Web Interface:
+```bash
 streamlit run ui/web_app.py
-Benefits
-Reduces log size by ~85%
+```
+## 📈 Benefits
+- Reduces log size by up to 85%
+- Accelerates troubleshooting workflows
+- Minimizes unnecessary escalations
+- Keeps sensitive data local
+- Structured enterprise-aligned pipeline
 
-Decreases troubleshooting time
+## ⚠️ Limitations
 
-Minimizes unnecessary escalations
+- Depends on knowledge base quality
+- Confidence scoring requires tuning
+- Novel errors may not match historical cases
+- Not a full ITSM replacement
+- Relies on ScaleDown API availability
 
-Keeps sensitive logs local
-
-Structured, enterprise-ready workflow
-
-Limitations
-Performance depends on knowledge base quality
-
-Confidence thresholds require tuning
-
-Not a full ITSM replacement
-
-Dependent on ScaleDown API availability
-
-Tech Stack
-Python
-
-Ollama (Local LLM)
-
-ScaleDown API
-
-Sentence Transformers
-
-Streamlit
-
-Jira REST API
-
-If you want, I can now:
-
-Add GitHub badges
-
-Add a clean project tree section
-
-Or make it recruiter-optimized in under 15 lines
-
+🧪
+---
