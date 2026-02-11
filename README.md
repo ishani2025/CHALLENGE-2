@@ -1,112 +1,98 @@
 # CHALLENGE-2
 Technical Troubleshooting Guide
-Dual-Agent Local LLM System for Enterprise IT Support
+Dual-agent AI system for enterprise IT troubleshooting using ScaleDown, local LLM (Ollama), semantic retrieval, and automated escalation.
 
-Problem Statement
-Enterprise IT teams handle extremely large error logs (10,000+ lines) filled with repeated stack traces and noise. Engineers manually scan logs, search forums, and escalate issues, leading to high Mean Time to Resolution (MTTR).
+Problem
+Enterprise logs often exceed 10,000+ lines and contain repetitive stack traces and noise. Engineers manually analyze logs, search forums, and escalate unresolved issues, increasing Mean Time to Resolution (MTTR).
 
-There is a need for an automated system that can:
+Solution
+This system automates enterprise troubleshooting by:
 
-Compress verbose logs
+Compressing large logs using ScaleDown API
 
-Identify recurring error patterns
+Extracting dominant errors with a local LLM
 
-Retrieve similar past issues
+Retrieving similar historical issues using embeddings
 
-Generate step-by-step solutions
+Generating step-by-step solutions
 
-Escalate low-confidence cases automatically
+Computing confidence scores
 
-Solution Overview
-We built a dual-agent troubleshooting system that combines:
+Escalating low-confidence cases to Jira
 
-ScaleDown API for log compression
+Architecture Workflow
+Large Log
+   ↓
+ScaleDown API (Compression)
+   ↓
+Agent 1 – Log Analysis
+   ↓
+Similarity Search (Knowledge Base)
+   ↓
+Agent 2 – Solution + Confidence
+   ↓
+Decision Engine
+   ├── Auto Resolve
+   ├── Suggest Review
+   └── Escalate → Jira Ticket
+Features
+Dual-agent reasoning architecture
 
-Local LLM (Ollama + Mistral) for reasoning
+Local LLM processing (Ollama + Mistral)
 
 Embedding-based similarity search
 
 Confidence-driven escalation workflow
 
-Optional Jira ticket automation
+Optional Slack & Jira integration
 
-The system reduces log noise, retrieves relevant fixes, and automates escalation decisions.
+MTTR tracking and compression metrics
 
-Workflow (Flowchart Format)
-User Uploads Large Error Log
-            │
-            ▼
-     ScaleDown API
-  (Compress 10k+ lines)
-            │
-            ▼
- Agent 1 – Log Analyst
-  - Extract primary error
-  - Identify recurring issues
-  - Categorize failure type
-            │
-            ▼
-  Embedding Similarity Search
-  - Search KB (StackOverflow,
-    GitHub, Runbooks)
-  - Retrieve Top Matches
-            │
-            ▼
- Agent 2 – Solution Engineer
-  - Generate root cause
-  - Provide step-by-step fix
-  - Compute confidence score
-            │
-            ▼
-     Decision Controller
-     ┌───────────────┬───────────────┬───────────────┐
-     │ High          │ Medium        │ Low           │
-     │ Confidence    │ Confidence    │ Confidence    │
-     │               │               │               │
-     ▼               ▼               ▼
- Auto Resolve   Suggest Review   Escalate → Jira
-                                     Ticket
 How to Run
-1. Install Dependencies
+1. Install dependencies
 pip install -r requirements.txt
-2. Install and Start Ollama
+2. Install and run Ollama
 ollama pull mistral
 ollama run mistral
-3. Set Environment Variables
+3. Set environment variables
 SCALEDOWN_API_KEY=your_key
 SCALEDOWN_BASE_URL=your_url
-JIRA_API_KEY=your_jira_key
-4. Run the Application
-CLI:
-
+JIRA_API_KEY=your_key
+4. Start application
 python app.py
-Web UI:
+or
 
 streamlit run ui/web_app.py
-Key Benefits
-Compresses logs by up to 85%
+Benefits
+Reduces log size by ~85%
 
-Reduces manual troubleshooting effort
+Decreases troubleshooting time
 
-Retrieves historically proven fixes
+Minimizes unnecessary escalations
 
-Intelligent confidence-based escalation
+Keeps sensitive logs local
 
-Processes sensitive logs locally
-
-Simulated 50% reduction in MTTR
+Structured, enterprise-ready workflow
 
 Limitations
-Dependent on knowledge base quality
+Performance depends on knowledge base quality
 
-Similarity search may miss novel issues
-
-Confidence scoring requires tuning
-
-Relies on ScaleDown API availability
+Confidence thresholds require tuning
 
 Not a full ITSM replacement
 
-Conclusion
-This system demonstrates a practical enterprise troubleshooting pipeline using dual-agent AI, semantic retrieval, controlled escalation, and real-world workflow integration.
+Dependent on ScaleDown API availability
+
+Tech Stack
+Python
+
+Ollama (Local LLM)
+
+ScaleDown API
+
+Sentence Transformers
+
+Streamlit
+
+Jira REST API
 
