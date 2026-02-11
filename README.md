@@ -6,11 +6,11 @@
 LogSentinel is an enterprise-grade troubleshooting assistant that analyzes large error logs (10,000+ lines), retrieves similar historical issues, generates structured step-by-step solutions, and intelligently escalates low-confidence cases.
 
 It combines:
-   -  <li> ScaleDown API for log compression</li>
-   - <li>Local LLM (Ollama + Mistral) for reasoning</li>
-   -  <li>Embedding-based similarity search</li>
-   - <li>Confidence-driven escalation workflow</li>
-   - <li>Optional Jira integration</li>
+   - ScaleDown API for log compression
+   - Local LLM (Ollama + Mistral) for reasoning
+   - Embedding-based similarity search
+   - Confidence-driven escalation workflow
+   - Optional Jira integration
 
 ### 🎯 Key Features
 
