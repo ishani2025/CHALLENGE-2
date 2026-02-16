@@ -1,0 +1,213 @@
+[
+  {
+    "title": "Exception in thread &quot;main&quot; java.lang.SecurityException: Prohibited package name: java.lang",
+    "error_type": "java.lang.SecurityException",
+    "stack_trace": [
+      "Exception in thread \"main\" java.lang.SecurityException: Prohibited package name: java.lang",
+      "    at java.lang.ClassLoader.preDefineClass(Unknown Source)",
+      "    at java.lang.ClassLoader.defineClass(Unknown Source)",
+      "    at java.security.SecureClassLoader.defineClass(Unknown Source)",
+      "    at java.net.URLClassLoader.defineClass(Unknown Source)",
+      "    at java.net.URLClassLoader.access$100(Unknown Source)",
+      "    at java.net.URLClassLoader$1.run(Unknown Source)",
+      "    at java.net.URLClassLoader$1.run(Unknown Source)",
+      "    at java.security.AccessController.doPrivileged(Native Method)",
+      "    at java.net.URLClassLoader.findClass(Unknown Source)",
+      "    at java.lang.ClassLoader.loadClass(Unknown Source)",
+      "    at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)",
+      "    at java.lang.ClassLoader.loadClass(Unknown Source)",
+      "    at sun.launcher.LauncherHelper.checkAndLoadMain(Unknown Source)"
+    ],
+    "tags": [
+      "java",
+      "runtime-error"
+    ],
+    "source": "StackOverflow"
+  },
+  {
+    "title": "Java RPG game - Exception in thread &quot;main&quot; java.lang.IllegalArgumentException",
+    "error_type": "java.lang.IllegalArgumentException",
+    "stack_trace": [
+      "Exception in thread \"main\" java.lang.IllegalArgumentException: input == null!",
+      "at java.desktop/javax.imageio.ImageIO.read(ImageIO.java:1400)",
+      "at tools.Loader.loadResource(Loader.java:11)",
+      "at tile.GrassTile.(GrassTile.java:9)",
+      "at World.World.generateWorld(World.java:34)",
+      "at World.World.(World.java:20)",
+      "at GameState.PlayState.init(PlayState.java:13)",
+      "at GameState.GameStateManager.init(GameStateManager.java:12)",
+      "at main.Main.init(Main.java:35)",
+      "at main.Main.main(Main.java:29)",
+      "Exception in thread \"AWT-EventQueue-0\" java.lang.NullPointerException",
+      "at GameState.PlayState.render(PlayState.java:25)",
+      "at GameState.GameStateManager.render(GameStateManager.java:18)",
+      "at main.Main.paint(Main.java:62)",
+      "at java.desktop/javax.swing.JComponent.paintChildren(JComponent.java:907)",
+      "at java.desktop/javax.swing.JComponent.paint(JComponent.java:1083)",
+      "at java.desktop/javax.swing.JComponent.paintChildren(JComponent.java:907)",
+      "at java.desktop/javax.swing.JComponent.paint(JComponent.java:1083)",
+      "at java.desktop/javax.swing.JLayeredPane.paint(JLayeredPane.java:590)",
+      "at java.desktop/javax.swing.JComponent.paintChildren(JComponent.java:907)",
+      "at java.desktop/javax.swing.JComponent.paintToOffscreen(JComponent.java:5262)",
+      "at java.desktop/javax.swing.RepaintManager$PaintManager.paintDoubleBufferedImpl(RepaintManager.java:1643)",
+      "at java.desktop/javax.swing.RepaintManager$PaintManager.paintDoubleBuffered(RepaintManager.java:1618)",
+      "at java.desktop/javax.swing.RepaintManager$PaintManager.paint(RepaintManager.java:1556)",
+      "at java.desktop/javax.swing.RepaintManager.paint(RepaintManager.java:1323)",
+      "at java.desktop/javax.swing.JComponent.paint(JComponent.java:1060)",
+      "at java.desktop/java.awt.GraphicsCallback$PaintCallback.run(GraphicsCallback.java:39)",
+      "at java.desktop/sun.awt.SunGraphicsCallback.runOneComponent(SunGraphicsCallback.java:78)",
+      "at java.desktop/sun.awt.SunGraphicsCallback.runComponents(SunGraphicsCallback.java:115)",
+      "at java.desktop/java.awt.Container.paint(Container.java:2002)",
+      "at java.desktop/java.awt.Window.paint(Window.java:3940)",
+      "at java.desktop/javax.swing.RepaintManager$4.run(RepaintManager.java:876)",
+      "at java.desktop/javax.swing.RepaintManager$4.run(RepaintManager.java:848)",
+      "at java.base/java.security.AccessController.doPrivileged(Native Method)",
+      "at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)",
+      "at java.desktop/javax.swing.RepaintManager.paintDirtyRegions(RepaintManager.java:848)",
+      "at java.desktop/javax.swing.RepaintManager.paintDirtyRegions(RepaintManager.java:823)",
+      "at java.desktop/javax.swing.RepaintManager.prePaintDirtyRegions(RepaintManager.java:772)",
+      "at java.desktop/javax.swing.RepaintManager$ProcessingRunnable.run(RepaintManager.java:1890)",
+      "at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)",
+      "at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)",
+      "at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)",
+      "at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)",
+      "at java.base/java.security.AccessController.doPrivileged(Native Method)",
+      "at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)",
+      "at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:740)",
+      "at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)",
+      "at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)",
+      "at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)",
+      "at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)",
+      "at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)",
+      "at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)"
+    ],
+    "tags": [
+      "java"
+    ],
+    "source": "StackOverflow"
+  },
+  {
+    "title": "Loading a Linux .so File at Java Runtime",
+    "error_type": "java.lang.UnsatisfiedLinkError",
+    "stack_trace": [
+      "Exception in thread \"main\" java.lang.UnsatisfiedLinkError: no Sample in java.library.path",
+      "at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1758)",
+      "at java.lang.Runtime.loadLibrary0(Runtime.java:823)",
+      "at java.lang.System.loadLibrary(System.java:1045)",
+      "at Test.main(Test.java:9)"
+    ],
+    "tags": [
+      "java",
+      "dynamic-linking"
+    ],
+    "source": "StackOverflow"
+  },
+  {
+    "title": "Exception in thread &quot;main&quot; java.util.MissingResourceException: Can&#39;t find bundle for base name Internationalisation/StatsBundle, locale en_US",
+    "error_type": "java.util.MissingResourceException",
+    "stack_trace": [
+      "Exception in thread \"main\" java.util.MissingResourceException: Can't find bundle for base name Internationalisation/StatsBundle, locale en_US",
+      "    at java.util.ResourceBundle.throwMissingResourceException(ResourceBundle.java:1564)",
+      "    at java.util.ResourceBundle.getBundleImpl(ResourceBundle.java:1387)",
+      "    at java.util.ResourceBundle.getBundle(ResourceBundle.java:845)",
+      "    at Internationalisation.ListDemo.displayValues(ListDemo.java:20)",
+      "    at Internationalisation.ListDemo.main(ListDemo.java:41)",
+      "Java Result: 1"
+    ],
+    "tags": [
+      "java",
+      "internationalization"
+    ],
+    "source": "StackOverflow"
+  },
+  {
+    "title": "Eclipse Error: Exception in thread &quot;AWT-EventQueue-0&quot; java.lang.NullPointerException",
+    "error_type": "java.lang.NullPointerException",
+    "stack_trace": [
+      "Exception in thread \"AWT-EventQueue-0\" java.lang.NullPointerException",
+      "at NameSurfer.actionPerformed(NameSurfer.java:58)",
+      "at javax.swing.JTextField.fireActionPerformed(JTextField.java:492)",
+      "at javax.swing.JTextField.postActionEvent(JTextField.java:705)",
+      "at javax.swing.JTextField$NotifyAction.actionPerformed(JTextField.java:820)",
+      "at javax.swing.SwingUtilities.notifyAction(SwingUtilities.java:1645)",
+      "at javax.swing.JComponent.processKeyBinding(JComponent.java:2859)",
+      "at javax.swing.JComponent.processKeyBindings(JComponent.java:2894)",
+      "at javax.swing.JComponent.processKeyEvent(JComponent.java:2822)",
+      "at java.awt.Component.processEvent(Component.java:6159)",
+      "at java.awt.Container.processEvent(Container.java:2083)",
+      "at java.awt.Component.dispatchEventImpl(Component.java:4744)",
+      "at java.awt.Container.dispatchEventImpl(Container.java:2141)",
+      "at java.awt.Component.dispatchEvent(Component.java:4572)",
+      "at java.awt.KeyboardFocusManager.redispatchEvent(KeyboardFocusManager.java:1856)",
+      "at java.awt.DefaultKeyboardFocusManager.dispatchKeyEvent(DefaultKeyboardFocusManager.java:722)",
+      "at java.awt.DefaultKeyboardFocusManager.preDispatchKeyEvent(DefaultKeyboardFocusManager.java:1000)",
+      "at java.awt.DefaultKeyboardFocusManager.typeAheadAssertions(DefaultKeyboardFocusManager.java:865)",
+      "at java.awt.DefaultKeyboardFocusManager.dispatchEvent(DefaultKeyboardFocusManager.java:686)",
+      "at java.awt.Component.dispatchEventImpl(Component.java:4616)",
+      "at java.awt.Container.dispatchEventImpl(Container.java:2141)",
+      "at java.awt.Window.dispatchEventImpl(Window.java:2489)",
+      "at java.awt.Component.dispatchEvent(Component.java:4572)",
+      "at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:710)",
+      "at java.awt.EventQueue.access$400(EventQueue.java:82)",
+      "at java.awt.EventQueue$2.run(EventQueue.java:669)",
+      "at java.awt.EventQueue$2.run(EventQueue.java:667)",
+      "at java.security.AccessController.doPrivileged(Native Method)",
+      "at java.security.AccessControlContext$1.doIntersectionPrivilege(AccessControlContext.java:87)",
+      "at java.security.AccessControlContext$1.doIntersectionPrivilege(AccessControlContext.java:98)",
+      "at java.awt.EventQueue$3.run(EventQueue.java:683)",
+      "at java.awt.EventQueue$3.run(EventQueue.java:681)",
+      "at java.security.AccessController.doPrivileged(Native Method)",
+      "at java.security.AccessControlContext$1.doIntersectionPrivilege(AccessControlContext.java:87)",
+      "at java.awt.EventQueue.dispatchEvent(EventQueue.java:680)",
+      "at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:296)",
+      "at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:211)",
+      "at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:201)",
+      "at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:196)",
+      "at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:188)",
+      "at java.awt.EventDispatchThread.run(EventDispatchThread.java:122)"
+    ],
+    "tags": [
+      "java",
+      "eclipse",
+      "swing",
+      "nullpointerexception",
+      "jtextfield"
+    ],
+    "source": "StackOverflow"
+  },
+  {
+    "title": "Vigenere Cipher(Java)",
+    "error_type": "java.lang.ArrayIndexOutOfBoundsException",
+    "stack_trace": [
+      "java.lang.ArrayIndexOutOfBoundsException: 26",
+      "at Cipher.encrypt(Cipher.java:30)",
+      "at Cipher.main(Cipher.java:51)"
+    ],
+    "tags": [
+      "java",
+      "vigenere"
+    ],
+    "source": "StackOverflow"
+  },
+  {
+    "title": "Exception thrown while calling scanner more than once. &quot;Exception in thread main&quot; java.util.NoSuchElementException: No line found&quot;",
+    "error_type": "java.util.NoSuchElementException",
+    "stack_trace": [
+      "Exception in thread \"main\" java.util.NoSuchElementException: No line found",
+      "",
+      "at java.base/java.util.Scanner.nextLine(Scanner.java:1651)",
+      "",
+      "at learning.java.Car.carAgeType(Car.java:30)",
+      "",
+      "at learning.java.Main.main(Main.java:17)",
+      "",
+      "",
+      "",
+      "Process finished with exit code 1"
+    ],
+    "tags": [
+      "java"
+    ],
+    "source": "StackOverflow"
+  }
+]
