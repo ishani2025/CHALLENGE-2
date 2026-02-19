@@ -1,5 +1,5 @@
 
-from src.preprocessing.python_extractor import extract_error_type
+from src.preprocessing.error_extractor import extract_exception_hierarchy
 from src.retrieval.search import Retriever
 import time
 class Agent1:
@@ -51,13 +51,11 @@ Prevention: {case.get("prevention_best_practices")}
 ---
 """
 
-        # ----------------------
-        # Prompt
-        # ----------------------
+
         prompt = f"""
 You are a production IT troubleshooting engineer.
 You must base your reasoning strictly on the reference cases.
-
+Explain the meaning of the exception message if present.
 If the reference cases do not sufficiently match,
 respond exactly with:
 
@@ -76,7 +74,8 @@ Step-by-Step Resolution:
 Preventive Measures:
 """
 
-        error_type = extract_error_type(compressed_log)
+        hierarchy = extract_exception_hierarchy(compressed_log)
+        error_type = hierarchy["primary_exception"]
 
         start_llm = time.time()
         response = self.llm.generate(prompt, temperature=0.2)
