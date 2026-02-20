@@ -8,10 +8,6 @@ try:
     load_dotenv()
 except Exception:
     pass
-
-api_key = st.secrets.get("SCALEDOWN_API_KEY")
-if not api_key:
-    raise ValueError("SCALEDOWN_API_KEY missing from Streamlit secrets")
 logging.basicConfig(level=logging.INFO)
 
 
@@ -19,7 +15,11 @@ class ScaleDownClient:
 
     def __init__(self, timeout: int = 10, max_retries: int = 2):
         self.url = "https://api.scaledown.xyz/compress/raw/"
-        self.api_key = st.secrets["SCALEDOWN_API_KEY"]
+        self.api_key = st.secrets.get("SCALEDOWN_API_KEY")
+        if not api_key:
+            st.warning("ScaleDown key not configured. Running in fallback mode.")
+            api_key = None
+        self.api_key = api_key
         self.timeout = timeout
         self.max_retries = max_retries
 
