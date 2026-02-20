@@ -2,8 +2,6 @@ import streamlit as st
 import time
 import sys
 import os
-
-# MUST be before other Streamlit UI calls
 st.set_page_config(
     page_title="LogSentiel-AI IT Troubleshooter",
     layout="wide"
@@ -41,21 +39,12 @@ def load_agent1():
 def load_agent2():
     return Agent2(load_retriever())
 
-# -----------------------------
-# Initialize ONCE (Critical Fix)
-# -----------------------------
-
 retriever = load_retriever()
 compressor = load_compressor()
 llm = load_llm()
 
 agent1 = load_agent1()
 agent2 = load_agent2()
-
-# -----------------------------
-# Styling (unchanged)
-# -----------------------------
-
 st.markdown("""
 <style>
 .stApp {
@@ -104,7 +93,7 @@ if st.button("Analyze Error"):
     if not error_log.strip():
         st.warning("Please paste an error log.")
         st.stop()
-
+    
     start_time = time.time()
     result1 = agent1.run(error_log)
 
