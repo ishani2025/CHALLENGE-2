@@ -52,7 +52,6 @@ It combines:
    Create a .env file and in that have:
    SCALEDOWN_API_KEY=your_key
    SCALEDOWN_BASE_URL=your_url
-   JIRA_API_KEY=your_jira_key
    ```
 
 
@@ -119,7 +118,7 @@ python app.py
 ```
 Web Interface:
 ```bash
-streamlit run ui/web_app.py
+streamlit run app.py
 ```
 ## 📈 Benefits
 - Reduces log size by up to 85%
