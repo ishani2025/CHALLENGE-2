@@ -2,12 +2,16 @@ import requests
 import json
 import os
 import logging
+import streamlit as st
 try:
     from dotenv import load_dotenv
     load_dotenv()
 except Exception:
     pass
 
+api_key = st.secrets.get("SCALEDOWN_API_KEY")
+if not api_key:
+    raise ValueError("SCALEDOWN_API_KEY missing from Streamlit secrets")
 logging.basicConfig(level=logging.INFO)
 
 
@@ -15,7 +19,7 @@ class ScaleDownClient:
 
     def __init__(self, timeout: int = 10, max_retries: int = 2):
         self.url = "https://api.scaledown.xyz/compress/raw/"
-        self.api_key = os.getenv("SCALEDOWN_API_KEY")
+        self.api_key = st.secrets["SCALEDOWN_API_KEY"]
         self.timeout = timeout
         self.max_retries = max_retries
 
