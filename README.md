@@ -1,9 +1,9 @@
-# 🤖   LogSentiel
+# 🤖   LogSentiel(JAVA)
 
 <div align="center"> <b>LogSentinel</b> <p><strong>Dual-Agent AI System for Enterprise IT Troubleshooting</strong></p> <p> <img src="https://img.shields.io/badge/Python-3.8+-blue" alt="Python Version"/> <img src="https://img.shields.io/badge/LLM-Ollama%20(Mistral)-green" alt="LLM"/> <img src="https://img.shields.io/badge/API-ScaleDown-orange" alt="ScaleDown API"/> <img src="https://img.shields.io/badge/License-MIT-yellow" alt="License"/> <img src="https://img.shields.io/badge/Status-Active-success" alt="Status"/> </p> </div>
 
 ## 🌟 Overview
-LogSentinel is an enterprise-grade troubleshooting assistant that analyzes large error logs (10,000+ lines), retrieves similar historical issues, generates structured step-by-step solutions, and intelligently escalates low-confidence cases.
+LogSentinel is an enterprise-grade troubleshooting assistant that analyzes large error logs of JAVA (10,000+ lines), retrieves similar historical issues, generates structured step-by-step solutions, and intelligently escalates low-confidence cases.
 
 It combines:
    -  ScaleDown API for log compression
