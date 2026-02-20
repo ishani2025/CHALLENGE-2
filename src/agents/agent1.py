@@ -12,34 +12,17 @@ class Agent1:
     def run(self, error_log: str):
 
         start_total = time.time()
-
-        # ----------------------
-        # Token Count
-        # ----------------------
         original_tokens = len(error_log.split())
-
-        # ----------------------
-        # Compression
-        # ----------------------
         start_compress = time.time()
         compressed_log, compression_ratio = self.compressor.compress(error_log)
         compression_time = round(time.time() - start_compress, 3)
         compressed_tokens = len(compressed_log.split())
-
-
-        # ----------------------
-        # Retrieval
-        # ----------------------
         retrieval_output = self.retriever.retrieve(
             compressed_log, top_k=3
         )
 
         retrieved_cases = retrieval_output["results"]
         retrieval_time = retrieval_output["retrieval_time"]
-
-        # ----------------------
-        # Build Context
-        # ----------------------
         knowledge_block = ""
 
         for case in retrieved_cases:

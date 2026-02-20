@@ -50,10 +50,6 @@ class Retriever:
             return matches[-1]
 
         return None
-
-    # -----------------------------
-    # Stack Trace Compression Logic
-    # -----------------------------
     def _build_stack_summary(self, stack_lines):
 
         if not stack_lines:
@@ -78,10 +74,6 @@ class Retriever:
         )
 
         return "\n".join(summary)
-
-    # -----------------------------
-    # Document Builder
-    # -----------------------------
     def _build_document(self, entry):
 
         stack_preview = self._build_stack_summary(
@@ -115,10 +107,6 @@ class Retriever:
                     start_time,
                     mode="strict_structured+semantic"
                 )
-
-            # -----------------------------
-            # PARTIAL STRUCTURED MATCH
-            # -----------------------------
             partial_matches = [
                 i for i, entry in enumerate(self.data)
                 if detected_error.lower() in entry.get("error_type", "").lower()
@@ -131,32 +119,23 @@ class Retriever:
                     start_time,
                     mode="partial_structured+semantic"
                 )
-
-        # -----------------------------
-        # FULL SEMANTIC SEARCH
-        # -----------------------------
-        distances, indices = self.index.search(query_embedding, top_k)
-
-        MIN_SIMILARITY = 0.35
-
-        filtered_results = [
-            self.data[idx]
-            for score, idx in zip(distances[0], indices[0])
-            if score > MIN_SIMILARITY
-        ]
-
-        retrieval_time = round(time.time() - start_time, 3)
-
-        return {
-            "results": filtered_results,
-            "retrieval_time": retrieval_time,
-            "filtered_count": len(filtered_results),
-            "mode": "semantic_only"
-        }
-
-    # -----------------------------
-    # Subset Semantic Ranking
-    # -----------------------------
+            distances, indices = self.index.search(query_embedding, top_k)
+            MIN_SIMILARITY = 0.35
+            scored_results = [
+                {
+                    **self.data[idx],
+                    "similarity": float(score)
+                }
+                for score, idx in zip(distances[0], indices[0])
+                if score > MIN_SIMILARITY
+                ]
+            retrieval_time = round(time.time() - start_time, 3)
+            return {
+                "results": scored_results,
+                "retrieval_time": retrieval_time,
+                "filtered_count": len(scored_results),
+                "mode": "semantic_only"
+                }
     def _semantic_subset_search(self, subset_indices, query_embedding, start_time, mode):
 
         subset_embeddings = self.embeddings[subset_indices]
@@ -168,10 +147,13 @@ class Retriever:
         MIN_SIMILARITY = 0.35
 
         results = [
-            self.data[subset_indices[i]]
+            {
+                **self.data[subset_indices[i]],
+                "similarity": float(scores[i])
+            }
             for i in top_local_indices
             if scores[i] > MIN_SIMILARITY
-        ]
+            ]
 
         retrieval_time = round(time.time() - start_time, 3)
 
