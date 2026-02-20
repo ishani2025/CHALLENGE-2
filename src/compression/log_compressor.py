@@ -4,74 +4,71 @@ import os
 import logging
 try:
     from dotenv import load_dotenv
-    load_dotenv()
+    load_dotenv(dotenv_path=".env")
 except Exception:
     pass
 
-logging.basicConfig(level=logging.INFO)
-
-
+api_key = os.getenv("SCALEDOWN_API_KEY")
 class ScaleDownClient:
-
-    def __init__(self, timeout: int = 10, max_retries: int = 2):
+    def __init__(self, timeout: int = 10):
         self.url = "https://api.scaledown.xyz/compress/raw/"
         self.api_key = os.getenv("SCALEDOWN_API_KEY")
         self.timeout = timeout
-        self.max_retries = max_retries
+    def deterministic_compress(self, log: str) -> str:
+        lines = log.splitlines()
 
+        important_lines = []
+        caused_by_lines = []
+
+        for line in lines:
+            line = line.strip()
+            if "Exception" in line or "Error" in line:
+                important_lines.append(line)
+            if line.startswith("Caused by"):
+                caused_by_lines.append(line)
+            if line.startswith("at ") and len(important_lines) < 15:
+                important_lines.append(line)
+
+        compressed = "\n".join(important_lines + caused_by_lines)
+
+        return compressed if compressed else log[:1000]
+    def scaledown_compress(self, log: str) -> str:
         if not self.api_key:
-            raise ValueError("SCALEDOWN_API_KEY not found in environment variables")
-
-    def compress(self, structured_log: str):
+            logging.warning("ScaleDown API key missing. Using deterministic compression only.")
+            return log
 
         headers = {
             "x-api-key": self.api_key,
             "Content-Type": "application/json"
-        }
+            }
 
         payload = {
-            "context": structured_log,
-            "prompt": (
-                "Tighten this structured stack trace further. "
-                "Preserve exception type, caused-by chain, "
-                "and the most relevant stack frames only."
-            ),
-            "scaledown": {
-                "rate": "aggressive"
-            }
+            "text": log
         }
+        print("Sending request to:", self.url)
+        try:
+            response = requests.post(
+                self.url,
+                json=payload,
+                headers=headers,
+                timeout=self.timeout
+            )
 
-        attempt = 0
+            if response.status_code == 200:
+                return response.json().get("compressed_text", log)
+            else:
+                logging.warning(f"ScaleDown failed: {response.status_code}")
+                return log
 
-        while attempt < self.max_retries:
-            try:
-                response = requests.post(
-                    self.url,
-                    headers=headers,
-                    data=json.dumps(payload),
-                    timeout=self.timeout
-                )
-
-                if response.status_code != 200:
-                    logging.warning(f"ScaleDown HTTP error: {response.status_code}")
-                    attempt += 1
-                    continue
-
-                result = response.json()
-
-                if result.get("successful"):
-                    compressed = result["results"]["compressed_prompt"]
-                    ratio = result["results"]["compression_ratio"]
-
-                    logging.info(f"ScaleDown compression ratio: {ratio}")
-                    return compressed, ratio
-
-                logging.warning("ScaleDown API returned unsuccessful response.")
-                attempt += 1
-
-            except requests.exceptions.RequestException as e:
-                logging.warning(f"ScaleDown request failed: {e}")
-                attempt += 1
-
-        logging.warning("ScaleDown failed after retries. Falling back.")
-        return structured_log, 1.0
+        except Exception as e:
+            logging.warning(f"ScaleDown exception: {e}")
+            return log
+    def compress(self, log: str) -> str:
+        original_length = len(log)
+        deterministic = self.deterministic_compress(log)
+        final_output = self.scaledown_compress(deterministic)
+        compressed_length = len(final_output)
+        ratio = compressed_length / original_length if original_length > 0 else 1
+        logging.info(f"Hybrid compression ratio: {ratio:.3f}")
+        return final_output, ratio
+        
