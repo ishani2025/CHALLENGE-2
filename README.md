@@ -136,4 +136,5 @@ streamlit run app.py
 - Relies on ScaleDown API availability
 
 🧪
+Detailed Presentation: https://docs.google.com/presentation/d/1ukT-LRSfH9DygVu6OdExVY2RyXMrMpR03JLZikN7_p0/edit?usp=sharing 
 ---
