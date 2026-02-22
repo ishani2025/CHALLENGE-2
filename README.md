@@ -137,5 +137,5 @@ streamlit run app.py
 
 🧪
 Detailed Presentation: 
-https://docs.google.com/presentation/d/1ukT-LRSfH9DygVu6OdExVY2RyXMrMpR03JLZikN7_p0/edit?usp=sharing 
+https://docs.google.com/presentation/d/1ukT-LRSfH9DygVu6OdExVY2RyXMrMpR03JLZikN7_p0/edit?usp=sharing
 ---
